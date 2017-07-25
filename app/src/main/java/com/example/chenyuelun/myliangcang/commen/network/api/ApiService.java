@@ -1,6 +1,6 @@
 package com.example.chenyuelun.myliangcang.commen.network.api;
 
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

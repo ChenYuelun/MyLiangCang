@@ -111,11 +111,15 @@ public abstract class BaseFragment extends RxFragment {
         super.setUserVisibleHint(isVisibleToUser);
         if(getUserVisibleHint()) {
             isVisible = true;
+            onVisible();
         }else {
             isVisible = false;
         }
     }
 
+    protected void onVisible() {
+
+    }
 
 
     protected void initTitle() {

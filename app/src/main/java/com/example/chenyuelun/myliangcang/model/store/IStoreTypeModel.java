@@ -1,5 +1,6 @@
 package com.example.chenyuelun.myliangcang.model.store;
 
+import com.example.chenyuelun.myliangcang.presenter.StoreTypePresnter;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 /**
@@ -7,5 +8,5 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  */
 
 public interface IStoreTypeModel {
-    void loadData(RxFragment context, OnLodaDataListener listener);
+    void loadData(StoreTypePresnter presnter, RxFragment fragment);
 }

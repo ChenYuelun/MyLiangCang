@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.chenyuelun.myliangcang.R;
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
 import com.example.chenyuelun.myliangcang.presenter.listener.OnItemClickListener;
 import com.example.chenyuelun.myliangcang.utils.imageUtil.ImageLoaderUtil;
 
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    List<StoreTypeBean.DataBean.ItemsBean> items = new ArrayList<>();
+    List<StoreTypeBean.DataBean.ItemsBean> data = new ArrayList<>();
     private OnItemClickListener listener;
 
     public TypeRvAdapter(Context context) {
@@ -33,8 +33,8 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void refresh(StoreTypeBean typeBean) {
-        items.clear();
-        items.addAll(typeBean.getData().getItems());
+        data.clear();
+        data.addAll(typeBean.getData().getItems());
         notifyDataSetChanged();
     }
 
@@ -47,14 +47,14 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        StoreTypeBean.DataBean.ItemsBean itemsBean = items.get(position);
+        StoreTypeBean.DataBean.ItemsBean itemsBean = data.get(position);
         String new_cover_img = itemsBean.getNew_cover_img();
         ImageLoaderUtil.getInstance().showImage(viewHolder.ivItemType,new_cover_img,null);
     }
 
     @Override
     public int getItemCount() {
-        return items == null ? 0 : items.size();
+        return data == null ? 0 : data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,7 +67,7 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 @Override
                 public void onClick(View v) {
                     if(listener != null) {
-                        listener.onItemClick(items.get(getLayoutPosition()));
+                        listener.onItemClick(getLayoutPosition());
                     }
                 }
             });
@@ -77,6 +77,10 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
+    }
+
+    public StoreTypeBean.DataBean.ItemsBean getItem(int position){
+        return data.get(position);
     }
 
 

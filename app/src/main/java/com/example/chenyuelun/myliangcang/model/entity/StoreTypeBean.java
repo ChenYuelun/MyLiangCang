@@ -1,4 +1,4 @@
-package com.example.chenyuelun.myliangcang.model.bean;
+package com.example.chenyuelun.myliangcang.model.entity;
 
 import java.util.List;
 

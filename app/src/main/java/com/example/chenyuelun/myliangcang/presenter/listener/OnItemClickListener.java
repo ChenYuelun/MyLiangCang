@@ -5,5 +5,5 @@ package com.example.chenyuelun.myliangcang.presenter.listener;
  */
 
 public interface OnItemClickListener{
-    void onItemClick(Object o);
+    void onItemClick(int position);
 }

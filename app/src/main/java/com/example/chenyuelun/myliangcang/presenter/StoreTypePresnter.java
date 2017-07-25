@@ -1,11 +1,8 @@
 package com.example.chenyuelun.myliangcang.presenter;
 
-import android.util.Log;
-
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
 import com.example.chenyuelun.myliangcang.model.store.IStoreTypeModel;
 import com.example.chenyuelun.myliangcang.model.store.IStoreTypeModelImpl;
-import com.example.chenyuelun.myliangcang.model.store.OnLodaDataListener;
 import com.example.chenyuelun.myliangcang.view.store.TypeView;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -23,21 +20,15 @@ public class StoreTypePresnter {
     }
 
     public void loadData(RxFragment fragment){
-        iStoreTypeModel.loadData(fragment,new OnLodaDataListener() {
-            @Override
-            public void onSuccess(StoreTypeBean storeTypeBean) {
-                typeView.finishTask(storeTypeBean);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e("TAG", e.getMessage());
-            }
-        });
+        iStoreTypeModel.loadData(this,fragment);
     }
 
     public void onRefresh(RxFragment fragment){
         loadData(fragment);
+    }
+
+    public void setData(StoreTypeBean storeTypeBean){
+        typeView.finishTask(storeTypeBean);
     }
 
 }

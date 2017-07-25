@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.chenyuelun.myliangcang.R;
 import com.example.chenyuelun.myliangcang.base.BaseFragment;
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
 import com.example.chenyuelun.myliangcang.presenter.StoreTypePresnter;
 import com.example.chenyuelun.myliangcang.presenter.adapter.TypeRvAdapter;
+import com.example.chenyuelun.myliangcang.presenter.listener.OnItemClickListener;
+import com.example.chenyuelun.myliangcang.utils.UiUtil;
 
 import butterknife.BindView;
 
@@ -46,6 +48,14 @@ public class TypeFragment extends BaseFragment implements TypeView {
         }
     }
 
+    @Override
+    protected void onVisible() {
+        if(!isPrepared) {
+           return;
+        }
+        storeTypePresnter.loadData(this);
+    }
+
     //配置recyclerview
     @Override
     protected void initRecyclerView() {
@@ -61,7 +71,8 @@ public class TypeFragment extends BaseFragment implements TypeView {
     }
 
     @Override
-    public void finishTask(StoreTypeBean storeTypeBean) {
+    public void finishTask(Object object) {
+        StoreTypeBean storeTypeBean = (StoreTypeBean) object;
         mSwipeRefreshLayout.setRefreshing(false);
         typeRvAdapter.refresh(storeTypeBean);
     }
@@ -74,6 +85,15 @@ public class TypeFragment extends BaseFragment implements TypeView {
             @Override
             public void onRefresh() {
                 storeTypePresnter.onRefresh(TypeFragment.this);
+            }
+        });
+
+
+        typeRvAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                StoreTypeBean.DataBean.ItemsBean item = typeRvAdapter.getItem(position);
+                UiUtil.showToast(item.getCat_name());
             }
         });
     }

@@ -1,7 +1,5 @@
 package com.example.chenyuelun.myliangcang.view.store;
 
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
-
 /**
  * Created by chenyuelun on 2017/7/25.
  */
@@ -21,7 +19,7 @@ public interface TypeView {
 //
     /**
      * 设置数据显示
-     * @param storeTypeBean
+     * @param object
      */
-     void finishTask(StoreTypeBean storeTypeBean);
+     void finishTask(Object object);
 }

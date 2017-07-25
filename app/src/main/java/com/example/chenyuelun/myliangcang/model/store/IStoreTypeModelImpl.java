@@ -5,7 +5,8 @@ import android.util.Log;
 import com.example.chenyuelun.myliangcang.commen.network.RetrofitHelper;
 import com.example.chenyuelun.myliangcang.commen.network.api.ApiConstants;
 import com.example.chenyuelun.myliangcang.commen.network.api.ApiService;
-import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.presenter.StoreTypePresnter;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import io.reactivex.Observer;
@@ -21,10 +22,10 @@ import io.reactivex.schedulers.Schedulers;
 public class IStoreTypeModelImpl implements IStoreTypeModel {
 
     @Override
-    public void loadData(RxFragment context, final OnLodaDataListener listener) {
+    public void loadData(final StoreTypePresnter presnter, RxFragment fragment) {
         RetrofitHelper.createApi(ApiService.class, ApiConstants.TYPE_BASEURL)
                 .getStoreType()
-                .compose(context.<StoreTypeBean>bindToLifecycle())
+                .compose(fragment.<StoreTypeBean>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<StoreTypeBean>() {
@@ -36,13 +37,13 @@ public class IStoreTypeModelImpl implements IStoreTypeModel {
                     @Override
                     public void onNext(@NonNull StoreTypeBean storeTypeBean) {
                         Log.e("TAG", "onNext");
-                        listener.onSuccess(storeTypeBean);
+                        presnter.setData(storeTypeBean);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         Log.e("TAG" + "Error", e.getMessage());
-                        listener.onError(e);
+
                     }
 
                     @Override
@@ -51,4 +52,6 @@ public class IStoreTypeModelImpl implements IStoreTypeModel {
                     }
                 });
     }
+
+
 }
