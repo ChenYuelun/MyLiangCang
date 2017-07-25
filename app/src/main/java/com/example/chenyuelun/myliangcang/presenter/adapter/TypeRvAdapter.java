@@ -1,4 +1,4 @@
-package com.example.chenyuelun.myliangcang.view.store;
+package com.example.chenyuelun.myliangcang.presenter.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.chenyuelun.myliangcang.R;
 import com.example.chenyuelun.myliangcang.model.bean.StoreTypeBean;
+import com.example.chenyuelun.myliangcang.presenter.listener.OnItemClickListener;
+import com.example.chenyuelun.myliangcang.utils.imageUtil.ImageLoaderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,9 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.setData(position);
+        StoreTypeBean.DataBean.ItemsBean itemsBean = items.get(position);
+        String new_cover_img = itemsBean.getNew_cover_img();
+        ImageLoaderUtil.getInstance().showImage(viewHolder.ivItemType,new_cover_img,null);
     }
 
     @Override
@@ -70,18 +73,11 @@ public class TypeRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             });
         }
 
-        public void setData(int position) {
-            StoreTypeBean.DataBean.ItemsBean itemsBean = items.get(position);
-            String new_cover_img = itemsBean.getNew_cover_img();
-            Glide.with(context).load(new_cover_img).into(ivItemType);
-        }
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(StoreTypeBean.DataBean.ItemsBean itemsBean);
-    }
+
 }

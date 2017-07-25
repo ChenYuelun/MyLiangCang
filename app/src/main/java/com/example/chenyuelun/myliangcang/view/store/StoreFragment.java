@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.chenyuelun.myliangcang.R;
 import com.example.chenyuelun.myliangcang.base.BaseFragment;
-import com.example.chenyuelun.myliangcang.utils.UiUtils;
+import com.example.chenyuelun.myliangcang.utils.UiUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,6 @@ public class StoreFragment extends BaseFragment {
         isPrepared = true;
         initFragments();
         initViewPager();
-        finishTask();
 
     }
 
@@ -81,11 +80,7 @@ public class StoreFragment extends BaseFragment {
     }
 
 
-    @Override
-    protected void finishTask() {
-        //vpStore.setCurrentItem(2);
 
-    }
 
     @Override
     protected void initTitle() {
@@ -101,10 +96,10 @@ public class StoreFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_title_search:
-                UiUtils.showToast("搜索");
+                UiUtil.showToast("搜索");
                 break;
             case R.id.iv_title_cart:
-                UiUtils.showToast("购物车");
+                UiUtil.showToast("购物车");
                 break;
         }
     }

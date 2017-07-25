@@ -11,7 +11,7 @@ import com.example.chenyuelun.myliangcang.commen.MyApplication;
  * Created by chenyuelun on 2017/7/6.
  */
 
-public class UiUtils {
+public class UiUtil {
 
     public static View inflate(int id) {
         return View.inflate(getContext(), id, null);

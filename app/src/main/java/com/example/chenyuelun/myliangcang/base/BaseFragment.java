@@ -3,13 +3,14 @@ package com.example.chenyuelun.myliangcang.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +19,7 @@ import butterknife.Unbinder;
  * Created by chenyuelun on 2017/7/24.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends RxFragment {
     private FragmentActivity activity;
     private Unbinder bind;
 
@@ -54,7 +55,11 @@ public abstract class BaseFragment extends Fragment {
         finishCreateView(savedInstanceState);
         //初始化标题栏
         initTitle();
+        initListener();
     }
+
+
+
     /**
      * 初始化views
      * */
@@ -106,62 +111,17 @@ public abstract class BaseFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if(getUserVisibleHint()) {
             isVisible = true;
-            onVisible();
         }else {
             isVisible = false;
-            onInVisible();
         }
     }
 
 
 
-    /**
-     * 当fragment显示的时候开始加载数据
-     */
-    protected void onVisible() {
-        Log.e("TAG", "fragment获得焦点");
-
-        //加载数据
-        lazyLoad();
-
-    }
-
     protected void initTitle() {
         Log.e("TAG", "basefragment == inittitle");
     }
 
-    //加载数据的方法
-    protected void lazyLoad() {
-
-    }
-
-    /**
-     * 当fragment不显示的时候
-     */
-    protected void onInVisible() {
-        Log.e("TAG", "fragment失去焦点");
-    }
-
-    /**
-     * 主动调用  从网络获取数据
-     */
-    protected void loadData(){
-
-    }
-
-    /**
-     * 主动调用  显示正在加载进度条
-     */
-    protected void showProgressBar(){
-
-    }
-
-    /**
-     * 隐藏进度条
-     */
-    protected void hideProgressBar() {
-
-    }
 
     /**
      * 初始化recyclerView
@@ -177,9 +137,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /**
-     * 设置数据显示
+     * 设置监听事件
      */
-    protected void finishTask() {
+    protected void initListener() {
 
     }
 

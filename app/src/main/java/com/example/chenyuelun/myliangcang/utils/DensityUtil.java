@@ -7,7 +7,7 @@ import android.util.TypedValue;
  * Created by chenyuelun on 2017/7/9.
  */
 
-public class DensityUtils {
+public class DensityUtil {
     /**
      * 根据手机的分辨率从 dip 的单位 转成为 px(像素)
      */

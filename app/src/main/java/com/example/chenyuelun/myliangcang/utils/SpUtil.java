@@ -11,19 +11,19 @@ import java.util.Map;
  * Created by chenyuelun on 2017/7/4.
  */
 
-public class SpUtils {
+public class SpUtil {
 
     public static final String FIRST_OPEN = "first_open";
     public static final String IS_LOGIN = "is_login";
     public static final String CURRENT_USER = "current_user";
     private static SharedPreferences sp;
 
-    private SpUtils() {
+    private SpUtil() {
     }
 
-    private static SpUtils spUtils = new SpUtils();
+    private static SpUtil spUtils = new SpUtil();
 
-    public static SpUtils getSpUtils() {
+    public static SpUtil getSpUtils() {
         return spUtils;
     }
 

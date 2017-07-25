@@ -2,7 +2,8 @@ package com.example.chenyuelun.myliangcang.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -11,7 +12,7 @@ import butterknife.Unbinder;
  * Created by chenyuelun on 2017/7/24.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends RxAppCompatActivity {
 
     private Unbinder bind;
 
