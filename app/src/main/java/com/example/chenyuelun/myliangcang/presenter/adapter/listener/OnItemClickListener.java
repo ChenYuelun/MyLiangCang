@@ -1,4 +1,4 @@
-package com.example.chenyuelun.myliangcang.presenter.listener;
+package com.example.chenyuelun.myliangcang.presenter.adapter.listener;
 
 /**
  * Created by chenyuelun on 2017/7/25.

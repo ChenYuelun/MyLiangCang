@@ -25,11 +25,12 @@ public class ImageLoaderOptions {
         this.errorDrawable = errorDrawable;
     }
 
-    private ImageLoaderOptions(int placeHolder, int errorDrawable){
+    public ImageLoaderOptions(int placeHolder, int errorDrawable){
         this.placeHolder = placeHolder;
         this.errorDrawable = errorDrawable;
-
     }
+
+    public ImageLoaderOptions(){}
 
 
 }

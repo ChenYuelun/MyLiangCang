@@ -10,7 +10,7 @@ import com.example.chenyuelun.myliangcang.base.BaseFragment;
 import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
 import com.example.chenyuelun.myliangcang.presenter.StoreTypePresnter;
 import com.example.chenyuelun.myliangcang.presenter.adapter.TypeRvAdapter;
-import com.example.chenyuelun.myliangcang.presenter.listener.OnItemClickListener;
+import com.example.chenyuelun.myliangcang.presenter.adapter.listener.OnItemClickListener;
 import com.example.chenyuelun.myliangcang.utils.UiUtil;
 
 import butterknife.BindView;
@@ -35,25 +35,22 @@ public class TypeFragment extends BaseFragment implements TypeView {
     @Override
     protected int getLayoutId() {
         storeTypePresnter = new StoreTypePresnter(this);
-        return R.layout.fragment_type_store;
+        return R.layout.refresh_recyclerview;
     }
 
     @Override
     protected void finishCreateView(Bundle savedInstanceState) {
         isPrepared = true;
         initRecyclerView();
-        initRefreshLayout();
-        if(isPrepared && isVisible) {
-            storeTypePresnter.loadData(this);
-        }
+        initRefreshLayout(mSwipeRefreshLayout);
     }
 
     @Override
     protected void onVisible() {
-        if(!isPrepared) {
-           return;
+        if (!isPrepared) {
+            return;
         }
-        storeTypePresnter.loadData(this);
+        storeTypePresnter.loadData();
     }
 
     //配置recyclerview
@@ -64,11 +61,7 @@ public class TypeFragment extends BaseFragment implements TypeView {
         recyclerview.setLayoutManager(new GridLayoutManager(getContext(), 2));
     }
 
-    @Override
-    protected void initRefreshLayout() {
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorBlack);
-        mSwipeRefreshLayout.setRefreshing(true);
-    }
+
 
     @Override
     public void finishTask(Object object) {
@@ -84,7 +77,7 @@ public class TypeFragment extends BaseFragment implements TypeView {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                storeTypePresnter.onRefresh(TypeFragment.this);
+                storeTypePresnter.onRefresh();
             }
         });
 

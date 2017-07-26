@@ -1,8 +1,8 @@
 package com.example.chenyuelun.myliangcang.presenter;
 
-import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
-import com.example.chenyuelun.myliangcang.model.store.IStoreTypeModel;
-import com.example.chenyuelun.myliangcang.model.store.IStoreTypeModelImpl;
+import com.example.chenyuelun.myliangcang.model.store.IStoreModel;
+import com.example.chenyuelun.myliangcang.model.store.StoreTypeModel;
+import com.example.chenyuelun.myliangcang.presenter.ipresenter.IStorePresenter;
 import com.example.chenyuelun.myliangcang.view.store.TypeView;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -10,25 +10,37 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * Created by chenyuelun on 2017/7/25.
  */
 
-public class StoreTypePresnter {
-    private IStoreTypeModel iStoreTypeModel;
+public class StoreTypePresnter extends IStorePresenter {
+
+    private IStoreModel iStoreTypeModel;
     private TypeView typeView;
+    private RxFragment fragment;
 
-    public StoreTypePresnter(TypeView typeView){
-        this.iStoreTypeModel = new IStoreTypeModelImpl();
-        this.typeView = typeView;
+    public StoreTypePresnter(RxFragment fragment){
+        this.iStoreTypeModel = new StoreTypeModel(this);
+        this.typeView = (TypeView) fragment;
+        this.fragment = fragment;
+    }
+    @Override
+    public void loadData(){
+        iStoreTypeModel.loadData();
     }
 
-    public void loadData(RxFragment fragment){
-        iStoreTypeModel.loadData(this,fragment);
+    @Override
+    public void onRefresh(){
+        loadData();
     }
 
-    public void onRefresh(RxFragment fragment){
-        loadData(fragment);
+
+
+    @Override
+    public void setData(Object object){
+        typeView.finishTask(object);
     }
 
-    public void setData(StoreTypeBean storeTypeBean){
-        typeView.finishTask(storeTypeBean);
+    @Override
+    public RxFragment getFragment() {
+        return fragment;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.chenyuelun.myliangcang.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -64,7 +63,8 @@ public class SplashActivity extends BaseActivity {
         Observable.timer(duration, TimeUnit.MILLISECONDS).subscribe(new Consumer<Long>() {
             @Override
             public void accept(@NonNull Long aLong) throws Exception {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                MainActivity.start(SplashActivity.this);
+                finish();
             }
         });
     }

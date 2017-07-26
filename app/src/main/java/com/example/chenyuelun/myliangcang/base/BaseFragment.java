@@ -4,12 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.chenyuelun.myliangcang.R;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
@@ -123,7 +124,7 @@ public abstract class BaseFragment extends RxFragment {
 
 
     protected void initTitle() {
-        Log.e("TAG", "basefragment == inittitle");
+
     }
 
 
@@ -137,13 +138,22 @@ public abstract class BaseFragment extends RxFragment {
     /**
      * 初始化refreshLayout
      */
-    protected void initRefreshLayout() {
+    protected void initRefreshLayout(SwipeRefreshLayout mSwipeRefreshLayout) {
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorBlack);
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     /**
      * 设置监听事件
      */
     protected void initListener() {
+
+    }
+
+    /**
+     * 展示界面
+     */
+    protected void showPager(){
 
     }
 

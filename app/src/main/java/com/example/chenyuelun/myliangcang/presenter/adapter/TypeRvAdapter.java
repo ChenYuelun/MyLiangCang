@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.example.chenyuelun.myliangcang.R;
 import com.example.chenyuelun.myliangcang.model.entity.StoreTypeBean;
-import com.example.chenyuelun.myliangcang.presenter.listener.OnItemClickListener;
+import com.example.chenyuelun.myliangcang.presenter.adapter.listener.OnItemClickListener;
 import com.example.chenyuelun.myliangcang.utils.imageUtil.ImageLoaderUtil;
 
 import java.util.ArrayList;

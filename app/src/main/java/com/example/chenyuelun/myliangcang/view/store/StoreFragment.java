@@ -77,6 +77,7 @@ public class StoreFragment extends BaseFragment {
         myFragmentPagerAdapter = new MyFragmentPagerAdapter(getFragmentManager());
         vpStore.setAdapter(myFragmentPagerAdapter);
         tablayout.setupWithViewPager(vpStore);
+        vpStore.setOffscreenPageLimit(4);
     }
 
 

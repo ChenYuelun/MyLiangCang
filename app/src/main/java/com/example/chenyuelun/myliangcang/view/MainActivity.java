@@ -1,5 +1,7 @@
 package com.example.chenyuelun.myliangcang.view;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
@@ -100,5 +102,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             ft.commit();
             preFragment = currentFragment;
         }
+    }
+
+
+    public static void start(Activity activity){
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);;
     }
 }
